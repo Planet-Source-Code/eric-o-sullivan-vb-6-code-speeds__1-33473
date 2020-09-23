@@ -1,0 +1,61 @@
+All tests are made in a For loop (except the loop tests) 
+looping from 1 to 5,000,000. Each test was run three times, 
+and the results are the averages. The times themselves are 
+in seconds.
+
+Test				Result1	Result2	Difference %
+-------------------------------+-------+-------+-------------
+byte v integer			1.124	0.752	66%
+integer v boolean		0.761	0.761	0%
+integer v long			0.742	0.741	0.1%
+boolean v long			0.751	0.751	0%
+long v single			0.751	0.902	20%
+long v double			0.741	0.891	20%
+single v double			0.901	0.901	0%
+fixed str v variable str	2.433	2.995	23%
+variable str v .Tag property	2.994	6.910	130%
+
+add v subtract			0.751	0.741	1%
+float division v multiply	1.392	0.971	43%
+integer division v multiply	0.902	0.971	7%
+
+proc v func (private)		3.465	6.178	56%
+proc v func (public)		3.465	6.069	57%
+function v control property	6.158	3.005	105%
+optional parameter v parameter	3.625	3.676	1%
+parentheses v no parentheses	3.685	3.625	1%
+
+if v select			0.902	1.842	102%
+for v do loop			0.230	1.002	335%
+while v do loop			1.382	1.061	24%
+do loop v do until		1.112	1.113	0.1%
+-------------------------------+-------+-------+-------------
+
+Data types from fastest to slowest are; Boolean, integer, 
+long, single, double, byte, fixed length string, variable
+length string.
+
+Fixed length strings are faster than variable length strings. 
+Test was done with 10 characters.
+
+When dividing, use integer division if possible (\) or 
+multiplying if floating point precision is needed.
+
+Procedures are faster than functions, but there is little 
+difference in speed between public and private. Using no 
+parentheses when calling the procedure is faster than
+calling your procedure with them. The Call statement in 
+itself does not cause any speed difference. Enevitably, 
+the more parameters and local variables within your 
+procedures or functions, the more it will slow it down. 
+Using optional parameters can help to speed up your sub-
+routine slightly.
+
+Use if statements whenever possible
+
+Use for loops whenever possible
+
+Use Do While...Loop instead of While...Wend
+
+One of the slowest things you can do in vb is to set the 
+property of a control. Avoid where possible.
